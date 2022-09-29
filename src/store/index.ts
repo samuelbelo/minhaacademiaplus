@@ -10,6 +10,7 @@ import VuexPersistence from 'vuex-persist';
 
 // Modules
 import ConfigModule from './ConfigModule';
+import {auth} from './AuthModule'
 
 /** Root State Interface */
 export interface RootState {
@@ -136,6 +137,7 @@ const store: StoreOptions<RootState> = {
   actions,
   modules: {
     ConfigModule,
+		auth
   },
   plugins: [
     new VuexPersistence({

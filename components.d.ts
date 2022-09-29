@@ -16,11 +16,14 @@ declare module '@vue/runtime-core' {
     VAppBarTitle: typeof import('vuetify/lib')['VAppBarTitle']
     VBtn: typeof import('vuetify/lib')['VBtn']
     VCard: typeof import('vuetify/lib')['VCard']
+    VCardActions: typeof import('vuetify/lib')['VCardActions']
     VCardSubtitle: typeof import('vuetify/lib')['VCardSubtitle']
+    VCardText: typeof import('vuetify/lib')['VCardText']
     VCardTitle: typeof import('vuetify/lib')['VCardTitle']
     VCol: typeof import('vuetify/lib')['VCol']
     VContainer: typeof import('vuetify/lib')['VContainer']
     VFadeTransition: typeof import('vuetify/lib')['VFadeTransition']
+    VForm: typeof import('vuetify/lib')['VForm']
     VIcon: typeof import('vuetify/lib')['VIcon']
     VImg: typeof import('vuetify/lib')['VImg']
     VList: typeof import('vuetify/lib')['VList']
@@ -36,5 +39,6 @@ declare module '@vue/runtime-core' {
     VRow: typeof import('vuetify/lib')['VRow']
     VSnackbar: typeof import('vuetify/lib')['VSnackbar']
     VSpacer: typeof import('vuetify/lib')['VSpacer']
+    VTextField: typeof import('vuetify/lib')['VTextField']
   }
 }

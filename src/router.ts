@@ -29,6 +29,12 @@ const routes: RouteRecordRaw[] = [
     name: 'Error',
     component: () => import('@/views/ErrorPage.vue'),
   },
+	{
+		path: '/login',
+		name: 'Login',
+		component: () => import('@/views/Login/Login.vue'),
+	},
+
 ];
 
 const router: Router = createRouter({
