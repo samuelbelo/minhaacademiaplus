@@ -7,7 +7,7 @@ import type {
   MutationTree,
 } from 'vuex';
 
-import type { RootState } from '.';
+import type { RootState } from './index.bkp';
 
 /** Config State */
 export interface ConfigState {

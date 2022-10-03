@@ -1,5 +1,6 @@
 /** Vue Router Configure */
 import { nextTick } from 'vue';
+import { useAuthStore } from "@/store/auth-store";
 import type { NavigationGuardNext, Route } from 'vue-router';
 import type { Position, PositionResult } from 'vue-router/types/router';
 import {
@@ -10,15 +11,26 @@ import {
 
 import type { VuetifyGoToTarget } from 'vuetify/types/services/goto';
 import goTo from 'vuetify/lib/services/goto';
-import store from '@/store';
+import store from '@/store/index.bkp';
+import pinia from "@/store/store";
 
 /** Router Config */
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/views/HomePage.vue'),
-  },
+	{
+		path: '/',
+		name: 'Login',
+		component: () => import('@/views/Login/Login.vue'),
+	},
+	{
+		path: '/home',
+		name: 'Home',
+		component: () => import('@/views/HomePage.vue'),
+		children: [{
+			path: '/aluno',
+			name: 'Aluno',
+			component: () => import('@/views/Aluno/Aluno.vue'),
+		}]
+	},
   {
     path: '/about',
     name: 'About',
@@ -29,11 +41,7 @@ const routes: RouteRecordRaw[] = [
     name: 'Error',
     component: () => import('@/views/ErrorPage.vue'),
   },
-	{
-		path: '/login',
-		name: 'Login',
-		component: () => import('@/views/Login/Login.vue'),
-	},
+
 
 ];
 
@@ -56,6 +64,7 @@ const router: Router = createRouter({
 
     return { x: 0, y: await goTo(scrollTo) };
   },
+
   routes,
 });
 
@@ -63,7 +72,17 @@ router.beforeEach(
   async (_to: Route, _from: Route, next: NavigationGuardNext<Vue>) => {
     // Show Loading
     store.dispatch('setLoading', true);
-    await nextTick();
+    // const useAuth = useAuthStore()
+		// debugger
+		// if (!useAuth.isLoggedIn) next('/login')
+		const token = localStorage.getItem('tokenAcesso')
+		if(!token) {
+			next('/login')
+		} else {
+			next()
+		}
+		await nextTick();
+
 
     // @see https://github.com/championswimmer/vuex-persist#how-to-know-when-async-store-has-been-replaced
     // await store.restored;

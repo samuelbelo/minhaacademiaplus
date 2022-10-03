@@ -20,7 +20,7 @@ import { useStore } from '@logue/vue2-helpers/vuex';
 import { useRoute } from "vue-router/composables";
 import HelloWorld from "@/components/HelloWorld.vue";
 import logo from "@/assets/vuetify.svg";
-import store from "@/store";
+import store from "@/store/index.bkp";
 const route = useRoute();
 
 // const store = useStore();

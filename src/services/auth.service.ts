@@ -1,33 +1,31 @@
-import axios from 'axios'
-const API_URL = 'https://minha-academia-plus-api.azurewebsites.net/api/';
+import axios from "axios";
 
-class AuthService {
-	login(user) {
-		return axios
-			.post(API_URL + 'signin', {
-				username: user.username,
-				password: user.password
-			})
-			.then(response => {
-				if (response.data.accessToken) {
-					localStorage.setItem('user', JSON.stringify(response.data));
-				}
+const API_URL = "https://minha-academia-plus-api.azurewebsites.net/";
 
-				return response.data;
-			});
-	}
-
-	logout() {
-		localStorage.removeItem('user');
-	}
-
-	register(user) {
-		return axios.post(API_URL + 'signup', {
+export const login = (user) => {
+	return axios
+		.post(API_URL + "login", {
 			username: user.username,
-			email: user.email,
 			password: user.password
-		});
-	}
-}
+		})
+		.then(response => {
+			if (response.data.accessToken) {
+				localStorage.setItem("user", JSON.stringify(response.data));
+			}
 
-export default new AuthService();
+			return response.data;
+		});
+};
+
+export const logout = () => {
+	localStorage.removeItem("user");
+};
+
+export const register = (user) => {
+	return axios.post(API_URL + "signup", {
+		username: user.username,
+		email: user.email,
+		password: user.password
+	});
+};
+
