@@ -17,19 +17,24 @@ import pinia from "@/store/store";
 /** Router Config */
 const routes: RouteRecordRaw[] = [
 	{
-		path: '/',
+		path: '/login',
 		name: 'Login',
 		component: () => import('@/views/Login/Login.vue'),
 	},
 	{
-		path: '/home',
+		path: '/',
 		name: 'Home',
 		component: () => import('@/views/HomePage.vue'),
 		children: [{
 			path: '/aluno',
 			name: 'Aluno',
 			component: () => import('@/views/Aluno/Aluno.vue'),
-		}]
+		},
+			{
+				path: '/instrutor',
+				name: 'Instrutor',
+				component: () => import('@/views/Professor/Professor.vue'),
+			}]
 	},
   {
     path: '/about',

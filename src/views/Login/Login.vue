@@ -28,8 +28,9 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { computed, onMounted, ref } from "vue";
-import api from '@/api/api'
+import api from "@/api/api";
 import router from "@/router";
+import axios from "axios";
 
 const valid: Ref<boolean> = ref(false);
 const usuario: Ref<string> = ref("");
@@ -43,19 +44,16 @@ onMounted(() => {
 });
 
 
-const handleLogin = () => {
+const handleLogin = async () => {
 	loading.value = true;
-
-	api({requiresAuth: false})
-		.post("https://minha-academia-plus-api.azurewebsites.net/login",
-			{usuario: usuario.value, senha: senha.value})
+	await axios.post("https://minha-academia-plus-api.azurewebsites.net/login", { usuario: usuario.value, senha: senha.value })
 		.then(({ data }) => {
-			localStorage.setItem("dataHoraExpiracao", data.dataHoraExpiracao)
-			localStorage.setItem("tipoUsuario", data.tipoUsuario)
-			localStorage.setItem("tokenAcesso", data.tokenAcesso)
-			router.push('/home')
+			localStorage.setItem("dataHoraExpiracao", data.dataHoraExpiracao);
+			localStorage.setItem("tipoUsuario", data.tipoUsuario);
+			localStorage.setItem("tokenAcesso", data.tokenAcesso);
+			router.push("/home");
 		})
-		.finally(() => loading.value = false)
+		.finally(() => loading.value = false);
 
 };
 

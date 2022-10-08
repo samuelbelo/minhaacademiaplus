@@ -4,7 +4,8 @@
   "compilerOptions": {
     "newLine": "lf",
     "noImplicitAny": false,
-    "paths": { "@/*": ["./src/*"] },
+		"allowJs": true,
+		"paths": { "@/*": ["./src/*"] },
     "types": ["vite/client", "vitest/globals", "vue", "vuetify"],
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
   },
